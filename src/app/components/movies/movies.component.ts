@@ -13,11 +13,12 @@ export class MoviesComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  moviesArray = [];
+  movieArray = [];
 
   ngOnInit(): void {
     this.getMoviesService.getMovies().subscribe((res) => {
       console.log(res);
+      this.movieArray = res;
     });
   }
 }

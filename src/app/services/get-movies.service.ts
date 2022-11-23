@@ -8,7 +8,7 @@ export class GetMoviesService {
   constructor(private http: HttpClient) {}
 
   getMovies() {
-    return this.http.get(
+    return this.http.get<any[]>(
       'https://medieinstitutet-wie-products.azurewebsites.net/api/products',
       {
         headers: {},
