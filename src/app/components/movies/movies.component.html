@@ -1,6 +1,7 @@
 <p>movies works!</p>
 <ul>
   <li *ngFor="let movie of movieArray">
-    {{ movie.name }}<a href="#">Lägg till i varukorg</a>
+    {{ movie.name
+    }}<button (click)="addToCart(movie.id)">Lägg till i varukorg</button>
   </li>
 </ul>

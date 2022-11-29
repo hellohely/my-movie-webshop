@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GetMoviesService } from 'src/app/services/get-movies.service';
@@ -14,6 +15,13 @@ export class MoviesComponent implements OnInit {
   ) {}
 
   movieArray = [];
+  productsInCart = JSON.parse(localStorage.getItem('products') || '[]');
+
+  addToCart(id) {
+    console.log(id);
+    this.productsInCart.push(id);
+    localStorage.setItem('products', JSON.stringify(this.productsInCart));
+  }
 
   ngOnInit(): void {
     this.getMoviesService.getMovies().subscribe((res) => {
