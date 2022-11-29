@@ -15,12 +15,12 @@ export class MoviesComponent implements OnInit {
   ) {}
 
   movieArray = [];
-  productsInCart = JSON.parse(localStorage.getItem('products') || '[]');
+  moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
   addToCart(id) {
     console.log(id);
-    this.productsInCart.push(id);
-    localStorage.setItem('products', JSON.stringify(this.productsInCart));
+    this.moviesInCart.push(id);
+    localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
   }
 
   ngOnInit(): void {

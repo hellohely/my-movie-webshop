@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   constructor() {}
 
-  productsInCart = JSON.parse(localStorage.getItem('products') || '[]');
+  moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
   ngOnInit(): void {}
 }
