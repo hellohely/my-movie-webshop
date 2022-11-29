@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class GetOrdersService {
   constructor(private http: HttpClient) {}
 
-  getMovies() {
+  getOrders() {
     return this.http.get<any[]>(
       'https://medieinstitutet-wie-products.azurewebsites.net/api/orders?companyid=3201',
       {
