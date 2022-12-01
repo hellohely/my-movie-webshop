@@ -14,31 +14,30 @@ export class CartComponent implements OnInit {
 
   customerName = '';
 
-  order = {
-    id: 0,
-    companyID: 3201,
-    created: new Date(),
-    createdBy: 'Henrietta',
-    paymentMethod: 'Swish',
-    totalPrice: 200,
-    status: 1,
-    orderRows: [{ id: 0, productId: 77, product: null, amount: 0, orderId: 0 }],
-  };
+  // order = {
+  //   id: 0,
+  //   companyID: 3201,
+  //   created: new Date(),
+  //   createdBy: 'Henrietta',
+  //   paymentMethod: 'Swish',
+  //   totalPrice: 200,
+  //   status: 1,
+  //   orderRows: [{ id: 0, productId: 77, product: null, amount: 0, orderId: 0 }],
+  // };
 
   createOrder(order: NgForm) {
-    console.log(order);
-
     let thisOrder = {
       id: 0,
       companyID: 3201,
       created: new Date(),
       createdBy: order.value.firstName + ' ' + order.value.lastName,
       paymentMethod: order.value.paymentMethod,
+      totalPrice: 200,
+      status: 1,
+      orderRows: this.moviesInCart,
     };
-    console.log(thisOrder);
 
-    //console.log(this.moviesInCart);
-    //this.sendOrderService.sendOrder(this.order);
+    this.sendOrderService.sendOrder(thisOrder);
   }
   ngOnInit(): void {}
 }

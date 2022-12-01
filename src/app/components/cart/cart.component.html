@@ -1,6 +1,6 @@
 <h1>Kundvagn</h1>
 <ul>
-  <li *ngFor="let movie of moviesInCart">{{ movie }}</li>
+  <li *ngFor="let movie of moviesInCart">{{ movie.productId }}</li>
 </ul>
 
 <form (ngSubmit)="createOrder(f)" #f="ngForm">
