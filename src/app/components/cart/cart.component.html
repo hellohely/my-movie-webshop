@@ -2,4 +2,30 @@
 <ul>
   <li *ngFor="let movie of moviesInCart">{{ movie }}</li>
 </ul>
-<button (click)="createOrder()">Skicka Order</button>
+
+<form (ngSubmit)="createOrder(f)" #f="ngForm">
+  <input
+    type="text"
+    placeholder="Ditt förnamn..."
+    name="firstName"
+    id="firstName"
+    class="form-control"
+    required
+    ngModel
+  />
+  <input
+    type="text"
+    placeholder="Ditt efternamn..."
+    name="lastName"
+    id="lastName"
+    class="form-control"
+    required
+    ngModel
+  />
+  <select name="paymentMethod" ngModel>
+    <option value="swish">Swish</option>
+    <option value="creditCard">Kreditkort</option>
+    <option value="klarna">Klarna</option>
+  </select>
+  <button type="submit">Skicka Order</button>
+</form>

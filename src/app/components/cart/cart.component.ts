@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { SendOrderService } from 'src/app/services/send-order.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class CartComponent implements OnInit {
 
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
+  customerName = '';
+
   order = {
     id: 0,
     companyID: 3201,
@@ -22,9 +25,20 @@ export class CartComponent implements OnInit {
     orderRows: [{ id: 0, productId: 77, product: null, amount: 0, orderId: 0 }],
   };
 
-  createOrder() {
-    console.log(this.moviesInCart);
-    this.sendOrderService.sendOrder(this.order);
+  createOrder(order: NgForm) {
+    console.log(order);
+
+    let thisOrder = {
+      id: 0,
+      companyID: 3201,
+      created: new Date(),
+      createdBy: order.value.firstName + ' ' + order.value.lastName,
+      paymentMethod: order.value.paymentMethod,
+    };
+    console.log(thisOrder);
+
+    //console.log(this.moviesInCart);
+    //this.sendOrderService.sendOrder(this.order);
   }
   ngOnInit(): void {}
 }
