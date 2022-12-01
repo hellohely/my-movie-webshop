@@ -18,15 +18,14 @@ export class MoviesComponent implements OnInit {
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
   addToCart(movie) {
-    let newMovie = {
-      id: 0,
-      productId: movie.id,
-      product: null,
-      amount: 1,
-      orderId: 0,
-    };
-    console.log(newMovie);
-    this.moviesInCart.push(newMovie);
+    // let newMovie = {
+    //   id: 0,
+    //   productId: movie.id,
+    //   product: null,
+    //   amount: 1,
+    //   orderId: 0,
+    // };
+    this.moviesInCart.push(movie);
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
   }
 

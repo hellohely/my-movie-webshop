@@ -12,7 +12,9 @@ export class CartComponent implements OnInit {
 
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
-  customerName = '';
+  orderRows = this.moviesInCart.map((movie) => {
+    return { id: 0, productId: movie.id, product: null, amount: 1, orderId: 0 };
+  });
 
   createOrder(order: NgForm) {
     let thisOrder = {
@@ -23,7 +25,7 @@ export class CartComponent implements OnInit {
       paymentMethod: order.value.paymentMethod,
       totalPrice: 200,
       status: 1,
-      orderRows: this.moviesInCart,
+      orderRows: this.orderRows,
     };
 
     this.sendOrderService.sendOrder(thisOrder);
