@@ -1,4 +1,13 @@
 <h1>Admin</h1>
-<ul>
-  <li *ngFor="let order of orders">{{ order.created }}</li>
-</ul>
+<h2>Alla ordrar</h2>
+
+<div *ngFor="let order of orders" class="order">
+  <h3>Order-ID: {{ order.id }}</h3>
+  <p>Kund: {{ order.createdBy }}</p>
+  <p>Beställningsdatum: {{ order.created }}</p>
+  <p>Betalningsmetod: {{ order.paymentMethod }}</p>
+  <p>Beställda filmer:</p>
+  <ul>
+    <li *ngFor="let row of order.orderRows">{{ row.productId }}</li>
+  </ul>
+</div>
