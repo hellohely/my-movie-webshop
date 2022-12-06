@@ -3,7 +3,7 @@
   <li *ngFor="let movie of moviesInCart">{{ movie.name }}</li>
 </ul>
 
-<form (ngSubmit)="createOrder(f)" #f="ngForm">
+<form (ngSubmit)="createOrder(f)" #f="ngForm" class="cartForm">
   <input
     type="text"
     placeholder="Ditt förnamn..."

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .order {
   border-bottom: 1px black solid;
 }
@@ -7,5 +11,40 @@
 .buy {
   display: block;
   margin-top: 10px;
-  margin-bottom: 20px;
+}
+
+.movieImg {
+  width: 100%;
+}
+
+.movieWrapper {
+  margin: 40px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.movieTitle {
+  font-weight: 300;
+  margin: 0px;
+  margin-top: 20px;
+}
+
+.allMovies {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cartForm {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+input,
+select,
+button {
+  padding: 15px;
+  margin-bottom: 10px;
 }
