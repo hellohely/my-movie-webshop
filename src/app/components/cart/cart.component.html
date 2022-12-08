@@ -1,6 +1,8 @@
 <h1>Min kundvagn</h1>
 <ul>
-  <li *ngFor="let movie of moviesInCart">{{ movie.name }}</li>
+  <li *ngFor="let movie of moviesInCart">
+    {{ movie.name }}, {{ movie.price }} kr
+  </li>
 </ul>
 
 <form (ngSubmit)="createOrder(f)" #f="ngForm" class="cartForm">

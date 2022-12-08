@@ -1,8 +1,8 @@
-<h1>Filmer att köpa</h1>
 <ul class="allMovies">
   <li *ngFor="let movie of movieArray" class="movieWrapper">
     <img src="{{ movie.imageUrl }}" alt="" class="movieImg" />
     <h4 class="movieTitle">{{ movie.name }}</h4>
+    <p>{{ movie.price }} kr</p>
     <button (click)="addToCart(movie)" class="buy">Lägg till i varukorg</button>
   </li>
 </ul>
