@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetOrdersService } from 'src/app/services/get-orders.service';
 import { GetMoviesService } from 'src/app/services/get-movies.service';
+import { DeleteOrderService } from 'src/app/services/delete-order.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +11,8 @@ import { GetMoviesService } from 'src/app/services/get-movies.service';
 export class AdminComponent implements OnInit {
   constructor(
     private getOrdersService: GetOrdersService,
-    private getMoviesService: GetMoviesService
+    private getMoviesService: GetMoviesService,
+    private deleteOrderService: DeleteOrderService
   ) {}
   orders = [];
   movieArray = [];
@@ -30,15 +32,27 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  deleteOrder(id) {
+    this.deleteOrderService.deleteOrder(id);
+    this.orders.splice(
+      this.orders.findIndex((obj) => obj.id === id),
+      1
+    );
+  }
+
+  getOrdersAndMovies() {
     this.getOrdersService.getOrders().subscribe((res) => {
       this.orders = res;
-      console.log(this.orders);
+      this.setNamesToOrderRows();
     });
 
     this.getMoviesService.getMovies().subscribe((res) => {
       this.movieArray = res;
       this.setNamesToOrderRows();
     });
+  }
+
+  ngOnInit(): void {
+    this.getOrdersAndMovies();
   }
 }
