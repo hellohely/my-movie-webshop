@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
     let thisOrder = {
       id: 0,
       companyID: 3201,
-      created: new Date(),
+      created: new Date().toLocaleString(),
       createdBy: order.value.firstName + ' ' + order.value.lastName,
       paymentMethod: order.value.paymentMethod,
       totalPrice: this.totalSum,

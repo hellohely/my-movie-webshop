@@ -1,5 +1,4 @@
-<h1>Admin</h1>
-<h2>Alla ordrar</h2>
+<h1>Alla ordrar</h1>
 
 <div *ngFor="let order of orders" class="order">
   <h3>Order-ID: {{ order.id }}</h3>
@@ -8,6 +7,9 @@
   <p>Betalningsmetod: {{ order.paymentMethod }}</p>
   <p>Beställda filmer:</p>
   <ul>
-    <li *ngFor="let row of order.orderRows">{{ row.productId }}</li>
+    <li *ngFor="let row of order.orderRows">
+      {{ row.name }}, Antal: {{ row.amount }}, Produkt-ID: {{ row.productId }}
+    </li>
   </ul>
+  <p>Summa: {{ order.totalPrice }} kr</p>
 </div>
