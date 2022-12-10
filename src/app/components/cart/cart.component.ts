@@ -12,10 +12,14 @@ export class CartComponent implements OnInit {
 
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
-  totalSum = this.moviesInCart.reduce(
-    (sum, movie) => sum + movie.price * movie.amount,
-    0
-  );
+  totalSum = 0;
+
+  calculateSum() {
+    this.totalSum = this.moviesInCart.reduce(
+      (sum, movie) => sum + movie.price * movie.amount,
+      0
+    );
+  }
 
   orderRows = this.moviesInCart.map((movie) => {
     return {
@@ -37,10 +41,7 @@ export class CartComponent implements OnInit {
       this.moviesInCart.splice(index, 1);
     }
 
-    this.totalSum = this.moviesInCart.reduce(
-      (sum, price) => sum + price.price,
-      0
-    );
+    this.calculateSum();
 
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
   }
@@ -61,11 +62,11 @@ export class CartComponent implements OnInit {
 
     this.moviesInCart = [];
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
-    this.totalSum = this.moviesInCart.reduce(
-      (sum, price) => sum + price.price,
-      0
-    );
+    this.calculateSum();
+
     order.reset();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.calculateSum();
+  }
 }

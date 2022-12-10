@@ -28,14 +28,11 @@ export class MoviesComponent implements OnInit {
       this.moviesInCart.push(movie);
     }
 
-    //movie.amount = 1;
-    //this.moviesInCart.push(movie);
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
   }
 
   ngOnInit(): void {
     this.getMoviesService.getMovies().subscribe((res) => {
-      console.log(res);
       this.movieArray = res;
     });
   }
