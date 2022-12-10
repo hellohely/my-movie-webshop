@@ -12,9 +12,25 @@ export class CartComponent implements OnInit {
 
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
+  totalSum = this.moviesInCart.reduce((sum, price) => sum + price.price, 0);
+
   orderRows = this.moviesInCart.map((movie) => {
     return { id: 0, productId: movie.id, product: null, amount: 1, orderId: 0 };
   });
+
+  removeFromCart(id) {
+    const foundItem = this.moviesInCart.find(function (movie) {
+      return movie.id === id;
+    });
+
+    const index = this.moviesInCart.indexOf(foundItem);
+    if (index > -1) {
+      this.moviesInCart.splice(index, 1);
+    }
+
+    localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
+    console.log(this.moviesInCart);
+  }
 
   createOrder(order: NgForm) {
     let thisOrder = {
@@ -23,7 +39,7 @@ export class CartComponent implements OnInit {
       created: new Date(),
       createdBy: order.value.firstName + ' ' + order.value.lastName,
       paymentMethod: order.value.paymentMethod,
-      totalPrice: 200,
+      totalPrice: this.totalSum,
       status: 1,
       orderRows: this.orderRows,
     };

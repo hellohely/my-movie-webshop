@@ -1,11 +1,16 @@
-<h1>Min kundvagn</h1>
-<ul>
-  <li *ngFor="let movie of moviesInCart">
-    {{ movie.name }}, {{ movie.price }} kr
+<ul class="allMovies">
+  <li *ngFor="let movie of moviesInCart" class="movieWrapper">
+    <img src="{{ movie.imageUrl }}" alt="" class="movieImg" />
+    <h4 class="movieTitle">{{ movie.name }}</h4>
+    <p>{{ movie.price }} kr</p>
+    <button (click)="removeFromCart(movie.id)">Ta bort från kundvagn</button>
   </li>
 </ul>
 
+<p>Summa: {{ totalSum }} kr</p>
+
 <form (ngSubmit)="createOrder(f)" #f="ngForm" class="cartForm">
+  <h3>Checka ut</h3>
   <input
     type="text"
     placeholder="Ditt förnamn..."
@@ -25,6 +30,7 @@
     ngModel
   />
   <select name="paymentMethod" ngModel>
+    <option value="" disabled selected>Välj betalningsmetod...</option>
     <option value="swish">Swish</option>
     <option value="creditCard">Kreditkort</option>
     <option value="klarna">Klarna</option>
