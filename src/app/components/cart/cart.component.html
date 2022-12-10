@@ -3,6 +3,7 @@
     <img src="{{ movie.imageUrl }}" alt="" class="movieImg" />
     <h4 class="movieTitle">{{ movie.name }}</h4>
     <p>{{ movie.price }} kr</p>
+    <p>Antal: {{ movie.amount }}</p>
     <button (click)="removeFromCart(movie.id)">Ta bort från kundvagn</button>
   </li>
 </ul>

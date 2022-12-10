@@ -15,7 +15,13 @@ export class CartComponent implements OnInit {
   totalSum = this.moviesInCart.reduce((sum, price) => sum + price.price, 0);
 
   orderRows = this.moviesInCart.map((movie) => {
-    return { id: 0, productId: movie.id, product: null, amount: 1, orderId: 0 };
+    return {
+      id: 0,
+      productId: movie.id,
+      product: null,
+      amount: movie.amount,
+      orderId: 0,
+    };
   });
 
   removeFromCart(id) {
@@ -34,7 +40,6 @@ export class CartComponent implements OnInit {
     );
 
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
-    console.log(this.moviesInCart);
   }
 
   createOrder(order: NgForm) {
@@ -50,6 +55,13 @@ export class CartComponent implements OnInit {
     };
 
     this.sendOrderService.sendOrder(thisOrder);
+
+    this.moviesInCart = [];
+    localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
+    this.totalSum = this.moviesInCart.reduce(
+      (sum, price) => sum + price.price,
+      0
+    );
   }
   ngOnInit(): void {}
 }
