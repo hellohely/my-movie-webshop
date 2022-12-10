@@ -28,6 +28,11 @@ export class CartComponent implements OnInit {
       this.moviesInCart.splice(index, 1);
     }
 
+    this.totalSum = this.moviesInCart.reduce(
+      (sum, price) => sum + price.price,
+      0
+    );
+
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
     console.log(this.moviesInCart);
   }
