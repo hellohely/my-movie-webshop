@@ -12,7 +12,10 @@ export class CartComponent implements OnInit {
 
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
-  totalSum = this.moviesInCart.reduce((sum, price) => sum + price.price, 0);
+  totalSum = this.moviesInCart.reduce(
+    (sum, movie) => sum + movie.price * movie.amount,
+    0
+  );
 
   orderRows = this.moviesInCart.map((movie) => {
     return {
