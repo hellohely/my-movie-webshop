@@ -65,6 +65,7 @@ export class CartComponent implements OnInit {
       (sum, price) => sum + price.price,
       0
     );
+    order.reset();
   }
   ngOnInit(): void {}
 }
