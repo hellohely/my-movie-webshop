@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   moviesInCart = JSON.parse(localStorage.getItem('movies') || '[]');
 
   totalSum = 0;
+  orderRows = [];
 
   calculateSum() {
     this.totalSum = this.moviesInCart.reduce(
@@ -21,15 +22,17 @@ export class CartComponent implements OnInit {
     );
   }
 
-  orderRows = this.moviesInCart.map((movie) => {
-    return {
-      id: 0,
-      productId: movie.id,
-      product: null,
-      amount: movie.amount,
-      orderId: 0,
-    };
-  });
+  createOrderRows() {
+    this.orderRows = this.moviesInCart.map((movie) => {
+      return {
+        id: 0,
+        productId: movie.id,
+        product: null,
+        amount: movie.amount,
+        orderId: 0,
+      };
+    });
+  }
 
   removeFromCart(id) {
     const foundItem = this.moviesInCart.find(function (movie) {
@@ -42,6 +45,7 @@ export class CartComponent implements OnInit {
     }
 
     this.calculateSum();
+    this.createOrderRows();
 
     localStorage.setItem('movies', JSON.stringify(this.moviesInCart));
   }
@@ -68,5 +72,6 @@ export class CartComponent implements OnInit {
   }
   ngOnInit(): void {
     this.calculateSum();
+    this.createOrderRows();
   }
 }
